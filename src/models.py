@@ -1,5 +1,5 @@
-from src import db
 from datetime import datetime
+from src import db
 
 class ShortUrls(db.Model):
     id = db.Column(db.Integer, primary_key=True)

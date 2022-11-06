@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\HTPCPanther\\.virtualenvs\\YuGiOh-BinderURL-DKARUe0d\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\HTPCPanther\\.virtualenvs\\YuGiOh-BinderURL-DKARUe0d\\Scripts\\python.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }

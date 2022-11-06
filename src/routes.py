@@ -18,6 +18,10 @@ def index():
     if not url:
         return Response("Request requires input URL to generate from", status=400)
 
+    found = ShortUrls.query.filter_by(original_url=url).first()
+    if found is not None:
+        return {'url': request.host_url + found.short_id}
+
     short_id = str()
     while len(short_id) == 0 or ShortUrls.query.filter_by(short_id=short_id).first() is not None:
         short_id = generate_short_id(8)
@@ -25,9 +29,7 @@ def index():
     new_link = ShortUrls(original_url=url, short_id=short_id, created_at=datetime.now())
     db.session.add(new_link)
     db.session.commit()
-    short_url = request.host_url + short_id
-
-    return {'url': short_url}
+    return {'url': request.host_url + short_id}
 
 
 
@@ -36,5 +38,4 @@ def redirect_url(short_id):
     link = ShortUrls.query.filter_by(short_id=short_id).first()
     if link:
         return redirect(link.original_url)
-    else:
-        return Response("Invalid redirect URL", status=400)
+    return Response("Invalid redirect URL", status=400)
